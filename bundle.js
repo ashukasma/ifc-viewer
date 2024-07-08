@@ -41035,66 +41035,6 @@ class GridHelper$1 extends LineSegments$1 {
 
 }
 
-class AxesHelper extends LineSegments$1 {
-
-	constructor( size = 1 ) {
-
-		const vertices = [
-			0, 0, 0,	size, 0, 0,
-			0, 0, 0,	0, size, 0,
-			0, 0, 0,	0, 0, size
-		];
-
-		const colors = [
-			1, 0, 0,	1, 0.6, 0,
-			0, 1, 0,	0.6, 1, 0,
-			0, 0, 1,	0, 0.6, 1
-		];
-
-		const geometry = new BufferGeometry$1();
-		geometry.setAttribute( 'position', new Float32BufferAttribute$1( vertices, 3 ) );
-		geometry.setAttribute( 'color', new Float32BufferAttribute$1( colors, 3 ) );
-
-		const material = new LineBasicMaterial$1( { vertexColors: true, toneMapped: false } );
-
-		super( geometry, material );
-
-		this.type = 'AxesHelper';
-
-	}
-
-	setColors( xAxisColor, yAxisColor, zAxisColor ) {
-
-		const color = new Color$1();
-		const array = this.geometry.attributes.color.array;
-
-		color.set( xAxisColor );
-		color.toArray( array, 0 );
-		color.toArray( array, 3 );
-
-		color.set( yAxisColor );
-		color.toArray( array, 6 );
-		color.toArray( array, 9 );
-
-		color.set( zAxisColor );
-		color.toArray( array, 12 );
-		color.toArray( array, 15 );
-
-		this.geometry.attributes.color.needsUpdate = true;
-
-		return this;
-
-	}
-
-	dispose() {
-
-		this.geometry.dispose();
-		this.material.dispose();
-
-	}
-
-}
-
 const _baseTable = new Uint32Array( 512 );
 const _shiftTable = new Uint32Array( 512 );
 
@@ -132765,14 +132705,14 @@ const renderer = new WebGLRenderer$1({
 renderer.setSize(size.width, size.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-//Creates grids and axes in the scene
-const grid = new GridHelper$1(50, 30);
-scene.add(grid);
+// //Creates grids and axes in the scene
+// const grid = new GridHelper(50, 30);
+// scene.add(grid);
 
-const axes = new AxesHelper();
-axes.material.depthTest = false;
-axes.renderOrder = 1;
-scene.add(axes);
+// const axes = new AxesHelper();
+// axes.material.depthTest = false;
+// axes.renderOrder = 1;
+// scene.add(axes);
 
 //Creates the orbit controls (to navigate the scene)
 const controls = new OrbitControls(camera, threeCanvas);
