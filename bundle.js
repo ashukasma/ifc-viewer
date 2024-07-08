@@ -132798,7 +132798,7 @@ window.addEventListener("resize", () => {
 });
 
 ifcLoader.load(
-    "models/Sample for catalogue.ifc",
+    "Sample for catalogue.ifc",
     (ifcModel) => {
         currentModel = ifcModel;
         scene.add(currentModel);
